@@ -1,0 +1,1104 @@
+ 1) Display all departments from department table.
+
+ select DEPTNO from emp;
+
+    DEPTNO
+----------
+        20
+        30
+        30
+        20
+        30
+        30
+        10
+        20
+        10
+        30
+        20
+
+    DEPTNO
+----------
+        30
+        20
+        10
+
+2) Display all employees from employee table.
+
+select ename from emp;
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+ENAME
+----------
+JAMES
+FORD
+MILLER
+
+3) Select the employee in department 30.
+
+select *from emp where deptno=30;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+5) Find the depart numbers and the name of employee of all dept with Deptno greater or equal to 20.
+
+ select deptno,ename from emp where deptno>=20;
+
+    DEPTNO ENAME
+---------- ----------
+        20 SMITH
+        30 ALLEN
+        30 WARD
+        20 JONES
+        30 MARTIN
+        30 BLAKE
+        20 SCOTT
+        30 TURNER
+        20 ADAMS
+        30 JAMES
+        20 FORD
+
+6) Find the employees whose commission is greater than their salary.
+
+select *from emp where comm>sal;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+
+        30
+
+7) Find the employees whose commission is greater than 60 percent of their salary.
+
+select ename from emp where comm>sal*0.6;
+
+ENAME
+----------
+MARTIN
+
+8) Find the employee whose commission is greater than 50 percent of their salary. The result must show only one record.
+
+ select ename from emp where comm>sal*0.5;
+
+ENAME
+----------
+MARTIN
+
+
+
+9) List the name, job and salary of all employees in dept 20 who earn more than 2000.
+
+select ename, job, sal from emp where sal>2000 and deptno=20;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+JONES      MANAGER         2975
+SCOTT      ANALYST         3000
+
+10) Find all salesmen in dept 30 whose salary is greater than or equal to Rs. 1500.
+
+ select salesman from emp where sal>=1500 and deptno=30;
+
+FORD       ANALYST         3000
+
+11) Find all the employees whose job is either a president or manager.
+
+ select ename from emp where JOB in ('MANAGER', 'PRESIDENT');
+
+ENAME
+----------
+JONES
+BLAKE
+CLARK
+KING
+
+12) Find all managers who are not in dept 30.
+
+ select ename from emp where job='MANAGER' and deptno!=30;
+
+ENAME
+----------
+JONES
+CLARK
+
+13) Find the details of all managers and clerks in dept 10.
+
+select *from emp where job in ('MANAGER','CLERK') and deptno=10;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+
+14.	Find the details of all manager (in any dept) and all clerks in dept 10
+
+ select *from emp where job='MANAGER'or job ='CLERK' and deptno=10;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+15.	Find the details of all managers in dept 10 and all clerks in dept 20
+
+ select *from emp where job='MANAGER' and deptno=10 or job='CLERK' and deptno=20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7876 ADAMS
+
+16.	Find all employees who are neither clerks nor manager but whose salary is greater than or equal to Rs. 2000.
+
+ select ename from emp where job!= 'MANAGER' and job!='CLERK' and sal>=2000;
+
+ENAME
+----------
+SCOTT
+KING
+FORD
+
+17.	Find the employees who earns between Rs. 1200 and Rs.1400.
+
+select ename, sal from emp where sal>=1200 and sal<=1400;
+
+ENAME             SAL
+---------- ----------
+WARD             1250
+MARTIN           1250
+MILLER           1300
+
+18.	Find the employees who are clerks, analysts or salesman.
+
+ select ename from emp where job in('CLERK', 'ANALYST', 'SALESMAN');
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+MARTIN
+SCOTT
+TURNER
+ADAMS
+JAMES
+FORD
+MILLER
+
+19.	Find the employees who are not clerks, analyst or salesman.
+
+select ename from emp where job!='CLERK' and job!='SALESMAN' and job!='ANALYST';
+
+ENAME
+----------
+JONES
+BLAKE
+CLARK
+KING
+
+20.	Find the employees who do not receive a commission i.e. commission is NULL.
+
+select ename from emp where comm is NULL;
+
+ENAME
+----------
+SMITH
+JONES
+BLAKE
+CLARK
+SCOTT
+KING
+ADAMS
+JAMES
+FORD
+MILLER
+
+21.	Find the employee whose commission is Rs. 0.
+
+ select ename from emp where comm=0;
+
+ENAME
+----------
+TURNER
+
+22. 22.	Find the different jobs of the employees receiving commission.
+
+ select ename,job from emp where comm is NULL;
+
+ENAME      JOB
+---------- ---------
+SMITH      CLERK
+JONES      MANAGER
+BLAKE      MANAGER
+CLARK      MANAGER
+SCOTT      ANALYST
+KING       PRESIDENT
+ADAMS      CLERK
+JAMES      CLERK
+FORD       ANALYST
+MILLER     CLERK
+
+23.	Find all employees who do not receive a commission or whose Commission is less than Rs. 100. 
+
+select ename from emp where comm is NULL or comm<100;
+
+ENAME
+----------
+SMITH
+JONES
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+JAMES
+FORD
+MILLER
+
+25.	Find all employees whose total earnings are greater than Rs. 2000.
+
+ select ename from emp where sal+comm>2000;
+
+ENAME
+----------
+MARTIN
+
+26.	Find all employees whose names begin with m.
+
+ select ename from emp where ename Like 'M%';
+
+ENAME
+----------
+MARTIN
+MILLER
+
+27.	Find all employees whose names end with n.
+
+select ename from emp where ename Like '%N';
+
+ENAME
+----------
+ALLEN
+MARTIN
+
+28.	Find all employees whose names contain the letter m
+
+ select ename from emp where ename Like '%M%';
+
+ENAME
+----------
+SMITH
+MARTIN
+ADAMS
+JAMES
+MILLER
+
+29.	Find the employees whose names are 5 characters long and end with n.
+
+select ename from emp where length(ename)=5 and ename like '%N';
+
+ENAME
+----------
+ALLEN
+
+30.	Find the employees who have the letter r as the third letter in their name
+
+ select ename from emp where ename like '__R%';
+
+ENAME
+----------
+WARD
+MARTIN
+TURNER
+FORD
+
+31.	Find all employees hired in month of February (of any year).
+
+select *from emp where to_char(hiredate, 'mon')='feb';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+32.	Find all employees who were hired on the first day of the month
+
+ select *from emp where to_char(hiredate,'dd')=01;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+35.	Display the names and the jobs of all employees, separated by ','(comma). For example (smith, clerk)
+
+ENAME||','||JOB
+--------------------
+SMITH,CLERK
+ALLEN,SALESMAN
+WARD,SALESMAN
+JONES,MANAGER
+MARTIN,SALESMAN
+BLAKE,MANAGER
+CLARK,MANAGER
+SCOTT,ANALYST
+KING,PRESIDENT
+TURNER,SALESMAN
+ADAMS,CLERK
+
+ENAME||','||JOB
+--------------------
+JAMES,CLERK
+FORD,ANALYST
+MILLER,CLERK
+
+36.	Display the names of all employees with the initial letter only in capitals
+
+elect initcap(ename) from emp;
+
+INITCAP(EN
+----------
+Smith
+Allen
+Ward
+Jones
+Martin
+Blake
+Clark
+Scott
+King
+Turner
+Adams
+
+INITCAP(EN
+----------
+James
+Ford
+Miller
+
+37.	Display the names of all employees, right aligning them to 15 characters.
+
+ select rpad(ename,15,' ') from emp;
+
+RPAD(ENAME,15,'
+---------------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+RPAD(ENAME,15,'
+---------------
+JAMES
+FORD
+MILLER
+
+38.	Display the names of all employees, padding them to right up-to 15 characters with '-'.
+
+ select rpad(ename,15,'-') from emp;
+
+RPAD(ENAME,15,'
+---------------
+SMITH----------
+ALLEN----------
+WARD-----------
+JONES----------
+MARTIN---------
+BLAKE----------
+CLARK----------
+SCOTT----------
+KING-----------
+TURNER---------
+ADAMS----------
+
+RPAD(ENAME,15,'
+---------------
+JAMES----------
+FORD-----------
+MILLER-------
+
+39.	Display the length of the name of all employees.
+
+select length(ename) from emp;
+
+LENGTH(ENAME)
+-------------
+            5
+            5
+            4
+            5
+            6
+            5
+            5
+            5
+            4
+            6
+            5
+
+LENGTH(ENAME)
+-------------
+            5
+            4
+            6
+
+41.	Display the names of all employees without any leading 'a'.
+
+SQL> select trim(leading 'A' from ename) from emp;
+
+TRIM(LEADI
+----------
+SMITH
+LLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+DAMS
+JAMES
+FORD
+MILLER
+
+42.	Display the names of all employees without any trailing 'r'.
+
+select trim(trailing 'R' from ename) from emp;
+
+TRIM(TRAIL
+----------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+
+43.	Show the first three characters of the names of all employees.
+
+ select substr(ename, 1, 3) from emp;
+
+SUB
+---
+SMI
+ALL
+WAR
+JON
+MAR
+BLA
+CLA
+SCO
+KIN
+TUR
+ADA
+
+SUB
+---
+JAM
+FOR
+MIL
+
+44.	Show the last three characters of the names of all employees.
+
+ select substr(ename, -3) from emp;
+
+SUB
+---
+ITH
+LEN
+ARD
+NES
+TIN
+AKE
+ARK
+OTT
+ING
+NER
+AMS
+
+SUB
+---
+MES
+ORD
+LER
+
+45.	Display the names of all employees replacing any 'a' with 'e'.
+
+select replace(ename,'A','E') from emp;
+
+REPLACE(EN
+----------
+SMITH
+ELLEN
+WERD
+JONES
+MERTIN
+BLEKE
+CLERK
+SCOTT
+KING
+TURNER
+EDEMS
+
+REPLACE(EN
+----------
+JEMES
+FORD
+MILLER
+
+46.	Display the names of all employees and the position at which the string 'ar' occurs in the name.
+
+select instr(ename,'AR') from emp;
+
+INSTR(ENAME,'AR')
+-----------------
+                0
+                0
+                2
+                0
+                2
+                0
+                3
+                0
+                0
+                0
+                0
+                0
+                0
+                0
+48.	Show the daily salary of all employees assuming a month has 30 days.
+
+ select sal,sal/30 from emp;
+
+       SAL     SAL/30
+---------- ----------
+       800 26.6666667
+      1600 53.3333333
+      1250 41.6666667
+      2975 99.1666667
+      1250 41.6666667
+      2850         95
+      2450 81.6666667
+      3000        100
+      5000 166.666667
+      1500         50
+      1100 36.6666667
+       950 31.6666667
+      3000        100
+      1300 43.3333333
+
+49 49.	Display the name of all employees, and their bonus. Assume each Employee gets a bonus of 20 percent of his salary subject to the Maximum of Rs. 500.
+
+select ename, sal , sal*0.2  bonus from emp where sal*0.2<=500;
+
+ENAME             SAL      BONUS
+---------- ---------- ----------
+SMITH             800        160
+ALLEN            1600        320
+WARD             1250        250
+MARTIN           1250        250
+CLARK            2450        490
+TURNER           1500        300
+ADAMS            1100        220
+JAMES             950        190
+MILLER           1300        260
+
+50.	Display the name of all employees, and their bonus. Assume each employee gets a bonus of 20 percent of his salary subject to the Maximum of Rs. 200.
+
+select ename, sal , sal*0.2  bonus from emp where sal*0.2<=200;
+
+ENAME             SAL      BONUS
+---------- ---------- ----------
+SMITH             800        160
+JAMES             950        190
+
+51.	For each employee display the number of days passed since the employee joined the company.
+
+select round( months_between(sysdate,hiredate)) from emp;
+
+ROUND(MONTHS_BETWEEN(SYSDATE,HIREDATE))
+---------------------------------------
+                                    467
+                                    464
+                                    464
+                                    463
+                                    457
+                                    462
+                                    461
+                                    391
+                                    456
+                                    458
+                                    389
+                                    455
+                                    455
+                                    453
+52.	For each employee display the number of months passed since the Employee joined the company.
+
+
+ select round( months_between(sysdate,hiredate)*30) from emp;
+
+ROUND(MONTHS_BETWEEN(SYSDATE,HIREDATE)*30)
+------------------------------------------
+                                     13997
+                                     13934
+                                     13932
+                                     13892
+                                     13716
+                                     13863
+                                     13825
+                                     11715
+                                     13667
+                                     13736
+                                     11681
+                                     13650
+                                     13650
+                                     13601
+
+54.	Display the employee details in the following manner. 'Miler joined on the twenty-third of January of the year nineteen hundred and eighty Two'.
+
+
+SQL> select ename || ' ' || 'joined'||  ' ' || 'on'|| ' ' || 'the'||' ' || to_char(hiredate,'ddsp')||' '|| 'of '|| ' '||to_char(hiredate,'month') || 'of the year' ||to_char(hiredate,'yyyysp')  from emp;
+
+ENAME||''||'JOINED'||''||'ON'||''||'THE'||''||TO_CHAR(HIREDATE,'DDSP')||''||'OF'||''||TO_CHAR(HIREDATE,'
+--------------------------------------------------------------------------------------------------------
+SMITH joined on the seventeen of  december of the yearone thousand nine hundred eighty
+ALLEN joined on the twenty of  february of the yearone thousand nine hundred eighty-one
+WARD joined on the twenty-two of  february of the yearone thousand nine hundred eighty-one
+JONES joined on the two of  april    of the yearone thousand nine hundred eighty-one
+MARTIN joined on the twenty-eight of  septemberof the yearone thousand nine hundred eighty-one
+BLAKE joined on the one of  may      of the yearone thousand nine hundred eighty-one
+CLARK joined on the nine of  june     of the yearone thousand nine hundred eighty-one
+SCOTT joined on the nineteen of  april    of the yearone thousand nine hundred eighty-seven
+KING joined on the seventeen of  november of the yearone thousand nine hundred eighty-one
+TURNER joined on the eight of  septemberof the yearone thousand nine hundred eighty-one
+ADAMS joined on the twenty-three of  may      of the yearone thousand nine hundred eighty-seven
+JAMES joined on the three of  december of the yearone thousand nine hundred eighty-one
+FORD joined on the three of  december of the yearone thousand nine hundred eighty-one
+MILLER joined on the twenty-three of  january  of the yearone thousand nine hundred eighty-two
+
+55.	Display the details of all employees, sorted on the names.
+
+
+SQL> select * from emp order by ename;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+
+56.	Display the name of all employees, based on their tenure, with the oldest employee coming first.
+
+SQL> select  ename from emp order by hiredate;
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+BLAKE
+CLARK
+TURNER
+MARTIN
+KING
+JAMES
+FORD
+MILLER
+SCOTT
+ADAMS
+
+14 rows selected.
+
+57.	Display the names, job and salary of all employees sorted on jobs and Salary.
+
+SQL> select ename,job,sal from emp order by job ,sal;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+FORD       ANALYST         3000
+SCOTT      ANALYST         3000
+SMITH      CLERK            800
+JAMES      CLERK            950
+ADAMS      CLERK           1100
+MILLER     CLERK           1300
+CLARK      MANAGER         2450
+BLAKE      MANAGER         2850
+JONES      MANAGER         2975
+KING       PRESIDENT       5000
+MARTIN     SALESMAN        1250
+WARD       SALESMAN        1250
+TURNER     SALESMAN        1500
+ALLEN      SALESMAN        1600
+
+14 rows selected.
+
+58.	Display the names, job and salary of all employees, sorted on jobs and within job, sorted on the descending order of salary
+
+SQL> select ename,job,sal from emp order by job ,sal desc;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+FORD       ANALYST         3000
+SCOTT      ANALYST         3000
+MILLER     CLERK           1300
+ADAMS      CLERK           1100
+JAMES      CLERK            950
+SMITH      CLERK            800
+JONES      MANAGER         2975
+BLAKE      MANAGER         2850
+CLARK      MANAGER         2450
+KING       PRESIDENT       5000
+ALLEN      SALESMAN        1600
+TURNER     SALESMAN        1500
+MARTIN     SALESMAN        1250
+WARD       SALESMAN        1250
+
+14 rows selected.
+
+59.	Display the names, job and salary of all employees, sorted on Descending order of job and within job, sorted on the descending order of salary.
+
+SQL> select ename,job,sal from emp order by job desc ,sal desc;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+ALLEN      SALESMAN        1600
+TURNER     SALESMAN        1500
+WARD       SALESMAN        1250
+MARTIN     SALESMAN        1250
+KING       PRESIDENT       5000
+JONES      MANAGER         2975
+BLAKE      MANAGER         2850
+CLARK      MANAGER         2450
+MILLER     CLERK           1300
+ADAMS      CLERK           1100
+JAMES      CLERK            950
+
+60 Display the name, month and year of all employees, sorted on the month of their hire date irrespective of the year.
+
+SQL> select ename,hiredate from emp order by to_char(hiredate,'month') ;
+
+ENAME      HIREDATE
+---------- ---------
+JONES      02-APR-81
+SCOTT      19-APR-87
+SMITH      17-DEC-80
+FORD       03-DEC-81
+JAMES      03-DEC-81
+ALLEN      20-FEB-81
+WARD       22-FEB-81
+MILLER     23-JAN-82
+CLARK      09-JUN-81
+ADAMS      23-MAY-87
+BLAKE      01-MAY-81
+KING       17-NOV-81
+TURNER     08-SEP-81
+MARTIN     28-SEP-81
+
+61.	Display the name, month and year of joining of all employees, sorted on the month of their hire date, and within that on the year, with the earliest year appearing first.
+
+SQL> select ename,to_char(hiredate,'month') hdate from emp order by to_char(hiredate,'MM');
+
+ENAME      HDATE
+---------- ---------
+MILLER     january
+ALLEN      february
+WARD       february
+JONES      april
+SCOTT      april
+ADAMS      may
+BLAKE      may
+CLARK      june
+TURNER     september
+MARTIN     september
+KING       november
+SMITH      december
+JAMES      december
+FORD       december
+
+SQL> select ename,to_char(hiredate,'dd-mm-yyyy') hdate from emp order by to_char(hiredate,'MM'),to_char(hiredate,'YY');
+
+ENAME      HDATE
+---------- ----------
+MILLER     23-01-1982
+ALLEN      20-02-1981
+WARD       22-02-1981
+JONES      02-04-1981
+SCOTT      19-04-1987
+BLAKE      01-05-1981
+ADAMS      23-05-1987
+CLARK      09-06-1981
+TURNER     08-09-1981
+MARTIN     28-09-1981
+KING       17-11-1981
+SMITH      17-12-1980
+JAMES      03-12-1981
+FORD       03-12-1981
+
+
+
+
+.SQL> select ename,dname,sal from dept,emp where emp.deptno=dept.deptno and sal in (select min(sal) from emp);
+
+ENAME      DNAME                 SAL
+---------- -------------- ----------
+SMITH      RESEARCH              800
+
+
+2.SQL> select deptno,min(sal) from emp group by deptno order by deptno;
+
+    DEPTNO   MIN(SAL)
+---------- ----------
+        10       1300
+        20        800
+        30        950
+3.
+SQL> select emp.ename, emp.empno,job,emp.sal,emp.deptno,dept.dname from emp inner join dept on emp.deptno=dept.deptno where job='CLERK' ;
+
+ENAME           EMPNO JOB              SAL     DEPTNO DNAME
+---------- ---------- --------- ---------- ---------- --------------
+MILLER           7934 CLERK           1300         10 ACCOUNTING
+SMITH            7369 CLERK            800         20 RESEARCH
+ADAMS            7876 CLERK           1100         20 RESEARCH
+JAMES            7900 CLERK            950         30 SALES
+
+4.SQL> select * from emp where deptno=20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select empno,ename,job,mgr,hiredate,sal,deptno from emp where deptno=(select deptno from emp where ename='FORD');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800         20
+      7566 JONES      MANAGER         7839 02-APR-81       2975         20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000         20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100         20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000         20
+5.SQL> select emp.ename, dept.dname, emp.deptno,emp.empno,emp.sal,emp.hiredate,emp.mgr from emp inner join dept on emp.deptno=dept.deptno where dept.deptno=20 and sal>(select sal from emp where ename='MARTIN');
+
+ENAME      DNAME              DEPTNO      EMPNO        SAL HIREDATE         MGR
+---------- -------------- ---------- ---------- ---------- --------- ----------
+JONES      RESEARCH               20       7566       2975 02-APR-81       7839
+SCOTT      RESEARCH               20       7788       3000 19-APR-87       7566
+FORD       RESEARCH               20       7902       3000 03-DEC-81       7566
+
+6.SQL> select empno,ename,(emp.deptno),dname,loc from emp,dept where emp.deptno=dept.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME          LOC
+---------- ---------- ---------- -------------- -------------
+      7782 CLARK              10 ACCOUNTING     NEW YORK
+      7839 KING               10 ACCOUNTING     NEW YORK
+      7934 MILLER             10 ACCOUNTING     NEW YORK
+      7566 JONES              20 RESEARCH       DALLAS
+      7902 FORD               20 RESEARCH       DALLAS
+      7876 ADAMS              20 RESEARCH       DALLAS
+      7369 SMITH              20 RESEARCH       DALLAS
+      7788 SCOTT              20 RESEARCH       DALLAS
+      7521 WARD               30 SALES          CHICAGO
+      7844 TURNER             30 SALES          CHICAGO
+      7499 ALLEN              30 SALES          CHICAGO
+      7900 JAMES              30 SALES          CHICAGO
+      7698 BLAKE              30 SALES          CHICAGO
+      7654 MARTIN             30 SALES          CHICAGO
+
+7.SQL> select emp.ename ,dept.dname, emp.deptno from emp inner join dept on emp.deptno= dept.deptno order by deptno;
+
+ENAME      DNAME              DEPTNO
+---------- -------------- ----------
+CLARK      ACCOUNTING             10
+KING       ACCOUNTING             10
+MILLER     ACCOUNTING             10
+JONES      RESEARCH               20
+FORD       RESEARCH               20
+ADAMS      RESEARCH               20
+SMITH      RESEARCH               20
+SCOTT      RESEARCH               20
+WARD       SALES                  30
+TURNER     SALES                  30
+ALLEN      SALES                  30
+JAMES      SALES                  30
+BLAKE      SALES                  30
+MARTIN     SALES                  30
+
+8.SQL> SELECT emp.ename,dept.dname,emp.deptno,dept.loc from emp,dept where emp.deptno=dept.deptno and loc='NEW YORK';
+
+ENAME      DNAME              DEPTNO LOC
+---------- -------------- ---------- -------------
+CLARK      ACCOUNTING             10 NEW YORK
+KING       ACCOUNTING             10 NEW YORK
+MILLER     ACCOUNTING             10 NEW YORK
+
+9.SQL> select emp.ename, dept.dname ,emp.sal from emp, dept  where emp.deptno=dept.deptno and sal in(select min(sal) from emp  group by deptno);
+
+ENAME      DNAME                 SAL
+---------- -------------- ----------
+JAMES      SALES                 950
+SMITH      RESEARCH              800
+MILLER     ACCOUNTING           1300
+
+10.SQL> select emp.ename, dept.dname ,emp.sal from emp, dept  where emp.deptno=dept.deptno and sal in(select max(sal) from emp  group by deptno);
+
+ENAME      DNAME                 SAL
+---------- -------------- ----------
+BLAKE      SALES                2850
+FORD       RESEARCH             3000
+SCOTT      RESEARCH             3000
+KING       ACCOUNTING           5000
+
+11.SQL> select e1.ename as boss,count(e1.empno) SUBORDINATES from emp e1,emp e2 where e1.empno=e2.mgr group by e1.ename;
+
+BOSS       SUBORDINATES
+---------- ------------
+JONES                 2
+FORD                  1
+CLARK                 1
+SCOTT                 1
+BLAKE                 5
+KING                  3
+
+12.SQL>select e1.ename as mname,e1.job,e1.sal,e2.ename,e2.job,e2.sal from emp e1,emp e2 where e1.job='MANAGER'AND e1.empno=e2.mgr;
+
+MNAME      JOB              SAL ENAME      JOB              SAL
+---------- --------- ---------- ---------- --------- ----------
+JONES      MANAGER         2975 FORD       ANALYST         3000
+JONES      MANAGER         2975 SCOTT      ANALYST         3000
+BLAKE      MANAGER         2850 TURNER     SALESMAN        1500
+BLAKE      MANAGER         2850 ALLEN      SALESMAN        1600
+BLAKE      MANAGER         2850 WARD       SALESMAN        1250
+BLAKE      MANAGER         2850 JAMES      CLERK            950
+BLAKE      MANAGER         2850 MARTIN     SALESMAN        1250
+CLARK      MANAGER         2450 MILLER     CLERK           1300
+
+13.SQL> select m. ordernumber as order_no,m.orderdate as order_date,p.productname product_name,o.quantity,o.unitprice unit_price from my_order m,product p,order_item o where m.Id=o.orderid and p.Id=o.productid;
+
+  ORDER_NO ORDER_DAT PRODUCT_NAME           QUANTITY UNIT_PRICE
+---------- --------- -------------------- ---------- ----------
+      7369 07-APR-12 EASY-TRADING                800         20
+      7900 02-OCT-11 BANK-ANYWHERE               950         30
+      7934 23-SEP-15 TRIP-MANAGER                130         10
+
+14.SQL>  SELECT Min(SAL) FROM EMP WHERE SAL>(SELECT Min(SAL) FROM EMP);
+
+  MIN(SAL)
+----------
+       950
+
+15.SQL> SELECT *FROM ( SELECT *FROM emp ORDER BY Sal desc ) WHERE rownum <= 3 ORDER BY Sal ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+16.SQL> select sum(sal),deptno from emp group by deptno having count(*)>=2;
+
+  SUM(SAL)     DEPTNO
+---------- ----------
+      9400         30
+     10875         20
+      8750         10
+
+
